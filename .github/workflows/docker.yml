@@ -20,7 +20,7 @@ jobs:
         name: Search Dockerfiles
         id: dockerfiles
         run: |
-          DOCKERFILES=( $(find . -not -path '*/.*' -type f -name Dockerfile) )
+          DOCKERFILES=( $(find . -not -path '*/.*' -type f -name Dockerfile | sort) )
           JSON="[$( printf -- '"%s",' "${DOCKERFILES[@]}" | sed 's/,$//' )]"
           echo "::set-output name=paths::$JSON"
     outputs:
